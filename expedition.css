@@ -1,0 +1,2786 @@
+/* Expedition UI: forest-green instruments and a warm paper field journal. */
+:root {
+  --forest:#214b3b;
+  --paper:#f6f2e7;
+  --paper-dim:#e9eadd;
+  --muted:#74806b;
+  --line:#294c3222;
+  --gold:#edc26d;
+  --ink:#f3f1df;
+  --ink-dim:#bcc8af;
+  --panel-bg:rgba(25,53,39,.94);
+  --panel-bg-solid:#203d2d;
+  --panel-border:#9cab734f;
+  --panel-border-light:#b9be87;
+  --pixel:"Avenir Next","Segoe UI",sans-serif
+}
+
+body {
+  font-family:"Avenir Next","Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased
+}
+
+button {
+  font:inherit
+}
+
+button:focus-visible,[tabindex]:focus-visible {
+  outline:3px solid #deaa42;
+  outline-offset:4px
+}
+
+button {
+  touch-action:manipulation
+}
+
+button:disabled {
+  cursor:not-allowed
+}
+
+[hidden] {
+  display:none!important
+}
+
+kbd {
+  font:9px ui-monospace,monospace;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:20px;
+  padding:3px 5px;
+  border:1px solid currentColor;
+  border-radius:4px;
+  opacity:.7
+}
+
+.eyebrow {
+  font-size:9px;
+  letter-spacing:1.7px;
+  line-height:1.6;
+  font-weight:700
+}
+
+/* The playfield remains open between the instruments at its four edges. */
+#expeditionBrand {
+  position:fixed;
+  top:25px;
+  left:26px;
+  z-index:22;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-shadow:0 2px 6px #102f28
+}
+
+#expeditionBrand small {
+  display:block;
+  font-size:7px;
+  letter-spacing:1.9px;
+  margin-top:3px
+}
+
+.brand-compass {
+  color:var(--gold);
+  font-size:39px;
+  line-height:1
+}
+
+#statusHUD {
+  top:89px;
+  left:24px;
+  width:224px;
+  padding:13px 16px 10px;
+  border-width:1px;
+  border-radius:12px;
+  box-shadow:0 7px 25px #19352533
+}
+
+.player-card {
+  border-bottom-color:#dbe5bb25
+}
+
+.player-card img {
+  background:#b0bf8f;
+  border:1px solid #e2dcae60;
+  object-fit:contain
+}
+
+.player-meta #hudPlayerName {
+  font-size:13px;
+  letter-spacing:0;
+  color:var(--paper)
+}
+
+#locationName {
+  font-size:10px
+}
+
+.status {
+  margin-bottom:9px
+}
+
+.status label {
+  font-size:9px;
+  letter-spacing:.3px
+}
+
+.status label span {
+  font-size:9px
+}
+
+.bar {
+  height:5px;
+  border:0;
+  background:#ffffff12
+}
+
+.status .fill {
+  border-radius:4px
+}
+
+.money {
+  font-size:12px;
+  padding-top:9px;
+  color:var(--gold);
+  border-top-color:#dbe5bb25
+}
+
+.icon,.icon1,.icon2,.icon3 {
+  width:15px;
+  height:15px
+}
+
+#questTracker {
+  position:fixed;
+  top:375px;
+  left:24px;
+  width:224px;
+  padding:15px 16px;
+  border:1px solid #e7e0bf60;
+  border-radius:10px;
+  background:var(--paper);
+  color:var(--forest);
+  z-index:21;
+  text-align:left;
+  box-shadow:0 8px 25px #19352525;
+  cursor:pointer
+}
+
+#questTracker .eyebrow {
+  display:flex;
+  justify-content:space-between;
+  color:#83906f;
+  font-size:8px;
+  letter-spacing:1.1px
+}
+
+#questTitle {
+  display:block;
+  font:19px/1.25 Georgia,serif;
+  margin:9px 0
+}
+
+#questDetail {
+  display:block;
+  font-size:10px;
+  line-height:1.6;
+  color:#768169
+}
+
+.quest-progress,.level-track {
+  display:block;
+  height:3px;
+  border-radius:2px;
+  background:#264e2b18;
+  overflow:hidden;
+  margin-top:14px
+}
+
+.quest-progress i,.level-track i {
+  display:block;
+  height:100%;
+  background:#739365;
+  transition:width .3s
+}
+
+#topRight {
+  top:24px;
+  right:24px;
+  gap:9px
+}
+
+#minimapPanel {
+  border-width:3px;
+  border-color:#eae6c9;
+  border-radius:8px;
+  cursor:pointer;
+  overflow:hidden;
+  box-shadow:0 5px 20px #19352530
+}
+
+#minimap {
+  display:block;
+  width:160px;
+  height:112px
+}
+
+.minimap-label {
+  font:8px var(--pixel);
+  letter-spacing:2px;
+  padding:4px;
+  background:var(--forest);
+  color:var(--paper)
+}
+
+#settingsBtn {
+  width:37px;
+  height:37px;
+  border:1px solid #e1e2bb70;
+  background:var(--panel-bg);
+  border-radius:8px
+}
+
+#time-container {
+  padding:10px 15px;
+  border-width:1px;
+  border-radius:8px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap
+}
+
+#dayNumber {
+  font-size:8px;
+  color:var(--gold);
+  letter-spacing:1px
+}
+
+#game-clock {
+  font-size:20px;
+  letter-spacing:1px
+}
+
+#day-period {
+  font-size:10px;
+  margin:0
+}
+
+#discoveredList {
+  max-width:210px;
+  font-size:9px
+}
+
+#eventIndicator {
+  top:24px;
+  left:50%;
+  transform:translateX(-50%);
+  width:auto;
+  max-width:350px;
+  border-width:1px;
+  padding:10px 15px;
+  border-radius:8px
+}
+
+#eventName {
+  font-size:10px
+}
+
+#eventDesc {
+  font-size:9px
+}
+
+#expeditionNav {
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  z-index:100;
+  display:flex;
+  padding:6px;
+  background:var(--paper);
+  border:1px solid #e6e3cf;
+  border-radius:12px;
+  box-shadow:0 8px 30px #102b3440;
+  gap:3px
+}
+
+#expeditionNav button {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  border:0;
+  border-radius:6px;
+  padding:11px 13px;
+  background:transparent;
+  color:var(--forest);
+  font-size:11px;
+  cursor:pointer;
+  white-space:nowrap
+}
+
+#expeditionNav button:hover {
+  background:#dee5d3
+}
+
+#expeditionNav button>span {
+  font-size:20px
+}
+
+#expeditionNav kbd {
+  color:#89967e;
+  font-size:8px;
+  min-width:17px;
+  padding:2px
+}
+
+#actionBar {
+  bottom:98px;
+  border-width:1px;
+  border-radius:9px;
+  padding:10px 14px;
+  max-width:min(600px,65vw)
+}
+
+.action-btn {
+  border-width:1px;
+  font-size:11px;
+  background:#50734b;
+  letter-spacing:0
+}
+
+.action-btn:hover {
+  background:#658c58
+}
+
+#actionContext {
+  font-size:11px
+}
+
+#travelHint {
+  position:fixed;
+  bottom:90px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:19;
+  background:#173b30c9;
+  border:1px solid #ffffff26;
+  border-radius:20px;
+  padding:7px 14px;
+  font-size:9px;
+  color:#e6ecd7;
+  white-space:nowrap
+}
+
+#travelHint>span {
+  padding:0 6px
+}
+
+body:has(#actionBar.has-target) #travelHint,body.paused #travelHint {
+  display:none
+}
+
+#actionBar:not(.has-target) {
+  display:none
+}
+
+#journeyLevel {
+  position:fixed;
+  left:26px;
+  bottom:28px;
+  z-index:21;
+  width:175px;
+  font-size:10px;
+  letter-spacing:1px;
+  text-shadow:0 2px 5px #17362c
+}
+
+#journeyLevel .level-track {
+  margin:9px 0 7px;
+  background:#e8e8ba40
+}
+
+#journeyLevel .level-track i {
+  background:var(--gold)
+}
+
+#journeyLevel small {
+  font-size:8px;
+  letter-spacing:0;
+  color:#e1e6d3
+}
+
+#inventoryBtn {
+  bottom:24px;
+  right:24px;
+  width:57px;
+  height:57px;
+  border:1px solid #bec797;
+  background:var(--panel-bg);
+  border-radius:12px
+}
+
+#inventoryBtn img {
+  width:36px;
+  height:36px
+}
+
+#inventoryBtn::after {
+  content:'B';
+  position:absolute;
+  bottom:4px;
+  right:5px;
+  font-size:8px;
+  color:var(--gold)
+}
+
+#dialogueBox {
+  bottom:100px;
+  border-width:1px
+}
+
+.settings-box,.tutorial-box {
+  background:#f6f2e7;
+  color:var(--forest);
+  border:1px solid #dce0ca
+}
+
+.settings-box h2,.tutorial-box h2 {
+  color:var(--forest);
+  font-family:Georgia,serif;
+  font-size:28px;
+  letter-spacing:0
+}
+
+.set-primary {
+  background:var(--forest);
+  color:var(--paper);
+  border:1px solid var(--forest);
+  font-family:inherit;
+  font-size:12px
+}
+
+.set-ghost {
+  color:var(--forest);
+  border:1px solid #a5b294;
+  background:transparent;
+  font-family:inherit;
+  font-size:11px
+}
+
+.settings-hint,#tutorialText {
+  color:#66735a
+}
+
+#tutorialSkip,#tutorialStep {
+  color:#6e7d62
+}
+
+#toast {
+  background:var(--forest);
+  border:1px solid #d4dab1;
+  border-radius:8px;
+  font-size:12px;
+  z-index:6100
+}
+
+/* Shared overlay frame and controls. */
+.expedition-overlay {
+  position:fixed;
+  inset:0;
+  z-index:5200;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:26px;
+  background:#112e26bd;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  color:var(--forest)
+}
+
+.journal-shell,.minigame-shell {
+  display:flex;
+  flex-direction:column;
+  width:min(1020px,100%);
+  max-height:calc(100dvh - 52px);
+  overflow:hidden;
+  background:var(--paper);
+  border:1px solid #eeebd9;
+  border-radius:15px;
+  box-shadow:0 25px 100px #051d2850;
+  animation:panel-in .25s ease
+}
+
+.journal-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:25px 30px 20px
+}
+
+.journal-header .eyebrow {
+  color:#899175
+}
+
+.journal-header h1 {
+  font:normal clamp(23px,2.4vw,32px)/1.25 Georgia,serif;
+  margin:7px 0 0;
+  letter-spacing:-.5px
+}
+
+.close-button {
+  flex-shrink:0;
+  width:35px;
+  height:35px;
+  border:1px solid #bdc9ae;
+  background:transparent;
+  color:var(--forest);
+  border-radius:50%;
+  font-size:23px;
+  cursor:pointer
+}
+
+.close-button:hover {
+  background:#e2e8d6
+}
+
+.journal-tabs {
+  display:flex;
+  gap:5px;
+  border-bottom:1px solid var(--line);
+  padding:0 30px
+}
+
+.journal-tabs button {
+  padding:12px 19px;
+  background:transparent;
+  border:0;
+  border-bottom:2px solid transparent;
+  color:#75816b;
+  font-size:12px;
+  cursor:pointer
+}
+
+.journal-tabs button.active {
+  color:var(--forest);
+  border-bottom-color:var(--forest);
+  font-weight:700
+}
+
+.journal-tabs button:hover {
+  background:#e9ecdf
+}
+
+#journalContent {
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  padding:26px 30px 30px;
+  min-height:0;
+  scrollbar-color:#bcc8a7 transparent;
+  scrollbar-width:thin
+}
+
+.journal-footer {
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  flex-shrink:0;
+  padding:14px 30px;
+  border-top:1px solid var(--line);
+  font-size:9px;
+  color:#818d72;
+  letter-spacing:.8px
+}
+
+.journal-footer>span:last-child {
+  font:italic 12px Georgia,serif;
+  letter-spacing:0
+}
+
+.primary-button,.secondary-button,.small-button,.locked-button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:13px;
+  min-height:40px;
+  padding:11px 17px;
+  border:1px solid var(--forest);
+  border-radius:6px;
+  background:var(--forest);
+  color:var(--paper);
+  font-size:11px;
+  font-weight:600;
+  line-height:1.4;
+  cursor:pointer;
+  transition:background .15s,transform .15s
+}
+
+.primary-button:hover:not(:disabled) {
+  background:#365e43;
+  transform:translateY(-1px)
+}
+
+.primary-button:disabled {
+  opacity:.45
+}
+
+.primary-button>span {
+  margin-left:auto
+}
+
+.secondary-button,.small-button {
+  background:transparent;
+  color:var(--forest);
+  border-color:#b6c3a7
+}
+
+.secondary-button:hover,.small-button:hover {
+  background:#e2e7d8
+}
+
+.small-button {
+  font-size:10px;
+  min-height:34px;
+  padding:8px 11px
+}
+
+.locked-button {
+  border:1px dashed #c0c8b4;
+  background:#ecede2;
+  color:#7d876f;
+  font-size:10px
+}
+
+.panel-lead {
+  font-size:12px;
+  line-height:1.8;
+  color:#778369;
+  margin:0 0 23px
+}
+
+.quiet-note {
+  font-size:10px;
+  color:#849078;
+  line-height:1.7;
+  margin:22px 0 0
+}
+
+/* Journal, daily tasks and collection. */
+.journal-intro {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:22px
+}
+
+.journal-intro .eyebrow {
+  color:#8d966e
+}
+
+.journal-intro h2,.section-line h2,.camp-copy h2 {
+  font:normal 25px Georgia,serif;
+  letter-spacing:-.5px;
+  margin:7px 0
+}
+
+.journal-intro p {
+  font-size:12px;
+  color:#7a856d;
+  margin:9px 0 0
+}
+
+.day-stamp {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  width:67px;
+  height:75px;
+  border:1px solid #b7c4a5;
+  outline:1px solid #b7c4a5;
+  outline-offset:-5px;
+  transform:rotate(7deg);
+  font:31px Georgia,serif;
+  color:#7f966d
+}
+
+.day-stamp small {
+  font:8px var(--pixel);
+  letter-spacing:2px;
+  margin-top:3px
+}
+
+.daily-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px
+}
+
+.daily-goal {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 13px;
+  border:1px solid #d4dcc7;
+  border-radius:7px;
+  background:#eff0e5
+}
+
+.daily-goal>span {
+  font-size:21px;
+  color:#a2af8d
+}
+
+.daily-goal strong {
+  display:block;
+  font-size:11px;
+  font-weight:600
+}
+
+.daily-goal small {
+  display:block;
+  color:#879275;
+  font-size:10px;
+  margin-top:5px
+}
+
+.daily-goal.done {
+  border-color:#9eb48d;
+  background:#e1ead6
+}
+
+.daily-goal.done>span {
+  color:#4d824b
+}
+
+.daily-reward {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:15px 0 20px;
+  border-bottom:1px solid var(--line);
+  font-size:11px;
+  color:#83906f
+}
+
+.daily-reward b {
+  color:var(--forest);
+  margin-left:8px;
+  font-size:11px
+}
+
+.section-line {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin:24px 0 14px
+}
+
+.section-line h2 {
+  font-size:22px;
+  margin:0
+}
+
+.section-line>span {
+  font-size:10px;
+  color:#879276
+}
+
+.passport-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px
+}
+
+.passport-card {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  text-align:left;
+  padding:16px 14px;
+  min-height:175px;
+  border:1px dashed #bec8ad;
+  background:transparent;
+  color:var(--forest);
+  border-radius:8px;
+  cursor:pointer;
+  transition:transform .2s,background .2s
+}
+
+.passport-card:hover {
+  transform:translateY(-3px);
+  background:#ebeede
+}
+
+.passport-card.discovered {
+  background:#e6ebda;
+  border-style:solid
+}
+
+.passport-icon {
+  width:36px;
+  height:36px;
+  background:var(--region);
+  color:#244835;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  font-size:24px;
+  margin-bottom:12px;
+  opacity:.55
+}
+
+.discovered .passport-icon {
+  opacity:1
+}
+
+.passport-card small {
+  font-size:6px;
+  letter-spacing:1px;
+  color:#8a9678
+}
+
+.passport-card strong {
+  font:18px Georgia,serif;
+  margin:6px 0
+}
+
+.passport-card>span:not(.passport-icon) {
+  font-size:9px;
+  line-height:1.5;
+  color:#8a937e
+}
+
+.passport-card em {
+  font-size:9px;
+  font-style:normal;
+  margin-top:auto;
+  padding-top:17px;
+  color:#6e8460
+}
+
+.fruit-collection {
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:8px
+}
+
+.fruit-collection>div {
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  gap:8px;
+  padding:12px 4px;
+  border:1px dashed #cbd2be;
+  border-radius:7px;
+  opacity:.45
+}
+
+.fruit-collection .found {
+  background:#e7edde;
+  opacity:1;
+  border-style:solid
+}
+
+.fruit-collection img {
+  width:32px;
+  height:32px;
+  object-fit:contain;
+  image-rendering:pixelated
+}
+
+.fruit-collection span {
+  font-size:9px
+}
+
+/* Friends and challenge cards. */
+.friends-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:17px
+}
+
+.friend-card {
+  border:1px solid #d0d9c2;
+  border-radius:10px;
+  overflow:hidden;
+  background:#faf8f0;
+  display:flex;
+  flex-direction:column
+}
+
+.friend-art {
+  height:160px;
+  position:relative;
+  background:radial-gradient(ellipse at bottom,var(--character),#ecefdf 85%);
+  display:flex;
+  justify-content:center;
+  padding:8px
+}
+
+.friend-art img {
+  height:100%;
+  max-width:100%;
+  object-fit:contain
+}
+
+.friend-art>span {
+  position:absolute;
+  top:12px;
+  left:12px;
+  font-size:7px;
+  letter-spacing:1px;
+  padding:5px 7px;
+  background:#f6f2e7c9;
+  border-radius:10px;
+  color:#607353
+}
+
+.friend-card.locked .friend-art img {
+  filter:grayscale(.7);
+  opacity:.65
+}
+
+.friend-info {
+  padding:17px;
+  display:flex;
+  flex-direction:column;
+  flex:1
+}
+
+.friend-info>small {
+  color:#8b977c;
+  font-size:8px;
+  letter-spacing:1px;
+  text-transform:uppercase
+}
+
+.friend-info h2 {
+  font:25px Georgia,serif;
+  margin:5px 0 10px
+}
+
+.friend-info p {
+  font-size:11px;
+  line-height:1.8;
+  color:#79856c;
+  margin:0 0 12px
+}
+
+.perk {
+  font-size:10px;
+  color:#64804d;
+  margin:auto 0 15px;
+  line-height:1.6
+}
+
+.friend-info button {
+  width:100%;
+  font-size:10px
+}
+
+.challenge-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:17px
+}
+
+.challenge-card {
+  display:flex;
+  flex-direction:column;
+  border:1px solid #d0d9c2;
+  border-radius:10px;
+  overflow:hidden;
+  background:#faf8f0;
+  --scene:#a3c7b5
+}
+
+.cooking {
+  --scene:#dfbd84
+}
+
+.memory {
+  --scene:#bbb3cf
+}
+
+.challenge-scene {
+  height:178px;
+  position:relative;
+  overflow:hidden;
+  background:var(--scene)
+}
+
+.challenge-scene::before {
+  content:'';
+  position:absolute;
+  width:280px;
+  height:210px;
+  border:1px solid #fff5;
+  border-radius:50%;
+  left:-60px;
+  top:20px
+}
+
+.challenge-scene>span {
+  position:absolute;
+  left:25px;
+  top:35px;
+  font:75px Georgia,serif;
+  color:#fff7
+}
+
+.challenge-scene img {
+  height:90%;
+  position:absolute;
+  right:10%;
+  bottom:-5px;
+  object-fit:contain
+}
+
+.challenge-info {
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  flex:1
+}
+
+.challenge-info .eyebrow {
+  font-size:7px;
+  color:#8b9276;
+  letter-spacing:1px
+}
+
+.challenge-info h2 {
+  font:24px Georgia,serif;
+  letter-spacing:-.5px;
+  margin:8px 0 10px
+}
+
+.challenge-info p {
+  font-size:11px;
+  line-height:1.8;
+  color:#7b856f;
+  margin:0 0 18px
+}
+
+.challenge-meta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:space-between;
+  font-size:8px;
+  color:#748565;
+  margin:auto 0 17px
+}
+
+.challenge-info button {
+  width:100%;
+  font-size:10px
+}
+
+/* World map and overnight rest. */
+.world-map {
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  aspect-ratio:6400/4480;
+  border:5px solid #e1e5d4;
+  border-radius:9px;
+  background:#98b9ad
+}
+
+.world-map>img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:fill;
+  filter:saturate(.8)
+}
+
+.map-pin {
+  position:absolute;
+  transform:translate(-50%,-50%);
+  width:32px;
+  height:32px;
+  border:2px solid var(--paper);
+  border-radius:50%;
+  background:#eeeadd;
+  color:#526444;
+  box-shadow:0 3px 6px #1d493850;
+  cursor:pointer;
+  font-size:11px
+}
+
+.map-pin.visited {
+  background:var(--forest);
+  color:var(--paper)
+}
+
+.map-pin:hover {
+  scale:1.15
+}
+
+.map-player {
+  position:absolute;
+  transform:translate(-50%,-50%);
+  width:13px;
+  height:13px;
+  border:3px solid white;
+  border-radius:50%;
+  background:#edab42;
+  box-shadow:0 0 0 5px #edab4240;
+  pointer-events:none
+}
+
+.map-legend {
+  display:flex;
+  justify-content:center;
+  gap:23px;
+  font-size:10px;
+  color:#6b7e5b;
+  padding:15px
+}
+
+.map-legend span:first-child {
+  color:#bb8936
+}
+
+.destinations>div {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid var(--line)
+}
+
+.destination-number {
+  display:grid;
+  place-items:center;
+  background:#e1e7d5;
+  width:29px;
+  height:29px;
+  flex-shrink:0;
+  border-radius:50%;
+  font-size:11px
+}
+
+.destinations>div>div {
+  flex:1;
+  min-width:0
+}
+
+.destinations strong {
+  font-size:12px;
+  font-weight:600
+}
+
+.destinations small {
+  display:block;
+  font-size:10px;
+  line-height:1.7;
+  margin-top:3px;
+  color:#88947c
+}
+
+.camp-scene {
+  height:145px;
+  background:#284d41;
+  border-radius:9px;
+  position:relative;
+  overflow:hidden;
+  color:#dedab6;
+  text-align:center
+}
+
+.camp-scene>span {
+  position:absolute;
+  right:25%;
+  top:15px;
+  font-size:45px
+}
+
+.camp-scene>i {
+  position:absolute;
+  left:28%;
+  top:24px;
+  font-size:18px;
+  font-style:normal
+}
+
+.camp-scene>b {
+  position:absolute;
+  bottom:-30px;
+  left:calc(50% - 60px);
+  font:150px Georgia,serif;
+  color:#a6b295
+}
+
+.camp-copy {
+  text-align:center;
+  max-width:570px;
+  margin:25px auto 0
+}
+
+.camp-copy .eyebrow {
+  color:#8d997a
+}
+
+.camp-copy h2 {
+  font-size:30px;
+  margin:10px 0
+}
+
+.camp-copy p {
+  font-size:12px;
+  line-height:1.9;
+  color:#7e8a70
+}
+
+.camp-summary {
+  display:flex;
+  gap:25px;
+  justify-content:center;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:18px 0;
+  margin:23px 0
+}
+
+.camp-summary span {
+  font-size:10px;
+  color:#8b967d
+}
+
+.camp-summary b {
+  display:block;
+  font:25px Georgia,serif;
+  color:var(--forest);
+  margin-bottom:7px
+}
+
+#unlockNotice {
+  position:fixed;
+  top:26px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:6000;
+  max-width:calc(100vw - 36px);
+  width:365px;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  background:var(--paper);
+  color:var(--forest);
+  padding:16px 19px;
+  border:1px solid #cfdaae;
+  border-radius:10px;
+  box-shadow:0 12px 40px #122f3450;
+  pointer-events:none
+}
+
+#unlockNotice img {
+  width:48px;
+  height:55px;
+  object-fit:contain
+}
+
+.notice-symbol {
+  font-size:32px;
+  color:#b19348
+}
+
+#unlockNotice strong,#unlockNotice small {
+  display:block
+}
+
+#unlockNotice .eyebrow {
+  font-size:7px;
+  color:#8b9779
+}
+
+#unlockNotice strong {
+  font:22px Georgia,serif;
+  margin:4px 0
+}
+
+#unlockNotice small {
+  font-size:9px;
+  line-height:1.5;
+  color:#82906e
+}
+
+/* Playable minigames; the bamboo instrument extends these in adventure.css. */
+.minigame-shell {
+  width:min(640px,100%)
+}
+
+#miniContent {
+  padding:4px 30px 30px;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  min-height:0;
+  text-align:center
+}
+
+.mini-intro {
+  padding:0 16px
+}
+
+.mini-mentor {
+  position:relative;
+  height:180px;
+  width:180px;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--scene,#adc8b6),#e9ecdd);
+  margin:8px auto 22px
+}
+
+.mini-mentor img {
+  height:100%;
+  max-width:100%;
+  object-fit:contain
+}
+
+.mini-mentor>span {
+  position:absolute;
+  right:-12px;
+  bottom:20px;
+  border-radius:50%;
+  background:var(--paper);
+  padding:5px 12px;
+  font-size:30px;
+  color:#849976
+}
+
+.mini-intro .eyebrow {
+  color:#8c987b;
+  font-size:8px
+}
+
+.mini-intro h2,.mini-result h2 {
+  font:28px/1.3 Georgia,serif;
+  letter-spacing:-.5px;
+  margin:12px 0
+}
+
+.mini-intro p,.mini-result>p {
+  font-size:12px;
+  line-height:1.8;
+  color:#7e8a71;
+  margin:12px auto;
+  max-width:410px
+}
+
+.mini-instructions {
+  font-size:11px;
+  line-height:1.8;
+  padding:15px;
+  background:#e8ecdd;
+  border-radius:7px;
+  color:#718060;
+  margin:20px 0
+}
+
+.mini-intro>.primary-button {
+  width:100%
+}
+
+.mini-intro>small {
+  display:block;
+  font-size:9px;
+  line-height:1.7;
+  color:#8e997e;
+  margin-top:12px
+}
+
+.mini-game-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  font-size:10px;
+  letter-spacing:.5px;
+  color:#7c886c;
+  margin:0 0 18px
+}
+
+.mini-game-top>span:last-child {
+  padding:7px 10px;
+  background:#e4e9d7;
+  border-radius:20px;
+  color:#567249
+}
+
+.fishing-pond {
+  height:180px;
+  background:linear-gradient(#acc5ad 0 45%,#6aaba3 45% 65%,#4c8a82);
+  position:relative;
+  overflow:hidden;
+  border-radius:9px
+}
+
+.pond-sun {
+  position:absolute;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#eae1ac;
+  top:22px;
+  left:23%
+}
+
+.pond-mountain {
+  position:absolute;
+  left:-20px;
+  top:15px;
+  width:60%;
+  height:95px;
+  background:#5c9180;
+  clip-path:polygon(0 100%,35% 0,58% 63%,72% 22%,100% 100%)
+}
+
+.pond-ripples {
+  position:absolute;
+  left:calc(50% - 60px);
+  top:120px;
+  width:120px;
+  height:20px;
+  border:1px solid #daeee170;
+  border-radius:50%;
+  box-shadow:0 0 0 10px #dbe8d515
+}
+
+.fishing-float {
+  position:absolute;
+  height:115px;
+  width:70px;
+  top:18px;
+  left:calc(50% - 35px);
+  animation:bob 2s ease-in-out infinite
+}
+
+.fish-silhouette {
+  position:absolute;
+  font-size:48px;
+  color:#2f706a;
+  right:20%;
+  bottom:0;
+  transform:scaleX(2)
+}
+
+.mini-status {
+  font-size:11px;
+  line-height:1.6;
+  color:#748663;
+  min-height:18px;
+  margin:17px 0
+}
+
+.fishing-track {
+  position:relative;
+  height:29px;
+  margin:20px 8px 0;
+  border-radius:5px;
+  background:#dddcca;
+  overflow:visible
+}
+
+#fishingTarget {
+  position:absolute;
+  top:0;
+  height:100%;
+  background:#78a16e;
+  border-inline:2px solid #4f7f46
+}
+
+#fishingNeedle {
+  position:absolute;
+  top:-5px;
+  bottom:-5px;
+  width:5px;
+  transform:translateX(-50%);
+  background:#314d3b;
+  border:1px solid var(--paper);
+  border-radius:3px
+}
+
+.fishing-scale {
+  display:flex;
+  justify-content:space-between;
+  font-size:7px;
+  letter-spacing:1px;
+  color:#98a287;
+  margin:12px 5px 22px
+}
+
+#catchFish {
+  width:100%;
+  justify-content:center
+}
+
+.catch-results {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  min-height:30px;
+  margin-top:15px
+}
+
+.catch-results span {
+  width:28px;
+  height:28px;
+  padding-top:5px;
+  background:#ebded3;
+  border-radius:50%;
+  font-size:13px;
+  color:#a9836e
+}
+
+.catch-results span.hit {
+  background:#dae7ce;
+  color:#5b7c48
+}
+
+.cooking-pot {
+  position:relative;
+  height:85px;
+  color:#b89354
+}
+
+.cooking-pot>span:not(.steam) {
+  display:inline-block;
+  font-size:80px;
+  line-height:1;
+  transform:scaleX(1.3)
+}
+
+.steam {
+  position:absolute;
+  font-size:35px;
+  top:-14px;
+  left:calc(50% - 15px);
+  color:#9aa78a
+}
+
+.recipe-sequence {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  min-height:80px
+}
+
+.recipe-step {
+  width:70px;
+  border:1px solid #c9d3b8;
+  border-radius:8px;
+  background:#e9ecdf;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:7px
+}
+
+.recipe-step>span {
+  font-size:26px
+}
+
+.recipe-step>small {
+  font-size:9px;
+  color:#7a876d
+}
+
+.recipe-step.correct {
+  background:#d4e4c7;
+  border-color:#85a173
+}
+
+.recipe-step.wrong {
+  background:#edd9cb;
+  border-color:#be9078
+}
+
+#recipeTitle {
+  font:22px Georgia,serif;
+  margin:17px 0
+}
+
+.spice-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px
+}
+
+.spice-grid button {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:7px;
+  padding:13px 8px;
+  border:1px solid #cbd4bc;
+  border-radius:8px;
+  background:#f9f6ed;
+  color:var(--forest);
+  cursor:pointer
+}
+
+.spice-grid button:hover:not(:disabled) {
+  background:#e1e8d4
+}
+
+.spice-grid button:disabled {
+  opacity:.45
+}
+
+.spice-grid button>span {
+  font-size:27px
+}
+
+.spice-grid strong {
+  font-size:11px
+}
+
+.spice-grid kbd {
+  font-size:8px
+}
+
+.memory-caption {
+  font-size:12px;
+  color:#7e8e6f;
+  margin-bottom:20px
+}
+
+.memory-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px
+}
+
+.memory-card {
+  position:relative;
+  aspect-ratio:.9;
+  border:1px solid #c9d3b6;
+  border-radius:8px;
+  background:var(--forest);
+  padding:0;
+  cursor:pointer;
+  overflow:hidden;
+  transition:background .2s,transform .2s
+}
+
+.memory-card:hover:not(:disabled) {
+  transform:translateY(-2px)
+}
+
+.card-back,.card-face {
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  backface-visibility:hidden;
+  transition:opacity .2s
+}
+
+.card-back {
+  color:#c3cca5;
+  font-size:33px;
+  outline:1px solid #c6d2a030;
+  outline-offset:-8px;
+  border-radius:7px
+}
+
+.card-back small {
+  font-size:6px;
+  letter-spacing:2px
+}
+
+.card-face {
+  background:#f4f0e3;
+  opacity:0
+}
+
+.card-face img {
+  width:47%;
+  height:47%;
+  object-fit:contain;
+  image-rendering:pixelated
+}
+
+.card-face small {
+  font-size:10px;
+  color:var(--forest)
+}
+
+.memory-card.flipped .card-back {
+  opacity:0
+}
+
+.memory-card.flipped .card-face {
+  opacity:1
+}
+
+.memory-card.matched {
+  border:2px solid #80a86e
+}
+
+.memory-card.matched .card-face {
+  background:#e4edd9
+}
+
+.mini-result {
+  padding:18px 5px 0
+}
+
+.result-medal {
+  display:block;
+  width:85px;
+  height:85px;
+  margin:0 auto 24px;
+  padding-top:13px;
+  font-size:49px;
+  color:#aa8a3f;
+  background:#eae2bd;
+  border:1px dashed #b9a268;
+  border-radius:50%
+}
+
+.mini-result>.eyebrow {
+  color:#879372;
+  font-size:8px
+}
+
+.result-rewards {
+  display:flex;
+  justify-content:center;
+  gap:55px;
+  padding:23px 0;
+  margin:18px 0;
+  border-block:1px solid var(--line)
+}
+
+.result-rewards>span {
+  font:32px Georgia,serif;
+  color:var(--forest)
+}
+
+.result-rewards small {
+  display:block;
+  font:8px var(--pixel);
+  letter-spacing:2px;
+  color:#899577;
+  margin-top:7px
+}
+
+.result-friend {
+  display:flex;
+  align-items:center;
+  gap:17px;
+  padding:12px 17px;
+  background:#e4ebd8;
+  border-radius:9px;
+  margin:20px 0;
+  text-align:left
+}
+
+.result-friend img {
+  width:55px;
+  height:75px;
+  object-fit:contain
+}
+
+.result-friend small,.result-friend strong,.result-friend span {
+  display:block
+}
+
+.result-friend small {
+  font-size:7px;
+  letter-spacing:1px;
+  color:#84936f
+}
+
+.result-friend strong {
+  font:24px Georgia,serif;
+  margin:5px 0
+}
+
+.result-friend span {
+  font-size:10px;
+  color:#6f845b
+}
+
+.result-actions {
+  display:flex;
+  justify-content:center;
+  gap:10px
+}
+
+.result-actions>.primary-button {
+  flex:1
+}
+
+@keyframes panel-in {
+  from {
+    opacity:0;
+    transform:translateY(10px)
+  }
+
+  to {
+    opacity:1;
+    transform:translateY(0)
+  }
+
+}
+
+@keyframes bob {
+  50% {
+    transform:translateY(4px)
+  }
+
+}
+
+@media(max-width:1100px) {
+  #expeditionNav button {
+    padding:10px
+  }
+
+  #expeditionNav kbd {
+    display:none
+  }
+
+  #journeyLevel {
+    width:150px
+  }
+
+  .friends-grid,.challenge-grid {
+    gap:12px
+  }
+
+  .challenge-info {
+    padding:14px
+  }
+
+  .challenge-info h2 {
+    font-size:21px
+  }
+
+  .challenge-info button {
+    padding:10px;
+    font-size:9px
+  }
+
+}
+
+@media(max-width:860px) {
+  #expeditionBrand {
+    left:15px;
+    top:15px;
+    font-size:17px;
+    gap:6px
+  }
+
+  .brand-compass {
+    font-size:31px
+  }
+
+  #expeditionBrand small {
+    font-size:6px;
+    letter-spacing:1px
+  }
+
+  #statusHUD {
+    left:12px;
+    top:65px;
+    width:184px;
+    padding:10px 12px
+  }
+
+  #questTracker {
+    left:12px;
+    top:322px;
+    width:184px;
+    padding:12px
+  }
+
+  #questTitle {
+    font-size:17px
+  }
+
+  #topRight {
+    top:15px;
+    right:12px
+  }
+
+  #minimap {
+    width:130px;
+    height:91px
+  }
+
+  #minimapPanel {
+    display:block
+  }
+
+  #time-container {
+    padding:8px;
+    gap:8px
+  }
+
+  #game-clock {
+    font-size:17px
+  }
+
+  #discoveredList {
+    display:none
+  }
+
+  #eventIndicator {
+    top:215px;
+    right:12px;
+    left:auto;
+    transform:none;
+    max-width:170px;
+    padding:8px
+  }
+
+  #eventDesc {
+    display:none
+  }
+
+  #expeditionNav {
+    bottom:15px
+  }
+
+  #journeyLevel {
+    bottom:25px;
+    left:15px;
+    width:115px;
+    font-size:8px
+  }
+
+  #journeyLevel small {
+    font-size:7px
+  }
+
+  #inventoryBtn {
+    bottom:18px;
+    right:15px;
+    width:50px;
+    height:50px
+  }
+
+  #actionBar {
+    bottom:98px
+  }
+
+  #arrowControls {
+    bottom:90px;
+    left:13px
+  }
+
+  #arrowControls button {
+    width:43px;
+    height:43px;
+    border-width:1px;
+    background:var(--panel-bg);
+    touch-action:none
+  }
+
+  .arrow-row {
+    gap:5px;
+    margin-top:5px
+  }
+
+  .passport-grid {
+    grid-template-columns:repeat(3,1fr)
+  }
+
+  .friends-grid {
+    grid-template-columns:repeat(2,1fr)
+  }
+
+  .daily-goal {
+    gap:8px;
+    padding:12px 10px
+  }
+
+  .daily-goal strong {
+    font-size:10px
+  }
+
+  .daily-goal small {
+    font-size:9px
+  }
+
+}
+
+@media(max-width:600px) {
+  #expeditionBrand {
+    top:12px;
+    left:12px;
+    font-size:15px
+  }
+
+  .brand-compass {
+    font-size:27px
+  }
+
+  #expeditionBrand small {
+    font-size:5px;
+    letter-spacing:1px
+  }
+
+  #statusHUD {
+    top:54px;
+    left:10px;
+    width:159px;
+    padding:9px 11px
+  }
+
+  .player-card {
+    gap:7px;
+    padding-bottom:7px;
+    margin-bottom:7px
+  }
+
+  .player-card img {
+    width:29px;
+    height:34px;
+    border-radius:5px
+  }
+
+  .player-meta #hudPlayerName {
+    font-size:11px
+  }
+
+  #locationName {
+    font-size:8px;
+    margin-top:3px
+  }
+
+  .status {
+    margin-bottom:7px
+  }
+
+  .status label {
+    font-size:7px;
+    margin-bottom:3px
+  }
+
+  .status label span {
+    font-size:7px
+  }
+
+  .icon,.icon1,.icon2,.icon3 {
+    width:12px;
+    height:12px
+  }
+
+  .money {
+    font-size:10px;
+    padding-top:7px
+  }
+
+  .bar {
+    height:4px
+  }
+
+  #questTracker {
+    top:274px;
+    left:10px;
+    width:159px;
+    padding:10px 11px
+  }
+
+  #questTracker .eyebrow {
+    font-size:6px;
+    letter-spacing:.8px
+  }
+
+  #questTitle {
+    font-size:15px;
+    margin:6px 0
+  }
+
+  #questDetail {
+    font-size:8px
+  }
+
+  .quest-progress {
+    margin-top:9px
+  }
+
+  #topRight {
+    right:10px;
+    top:12px;
+    gap:7px
+  }
+
+  .tr-row {
+    gap:6px
+  }
+
+  #minimap {
+    width:100px;
+    height:70px
+  }
+
+  #minimapPanel {
+    border-width:2px
+  }
+
+  .minimap-label {
+    font-size:6px;
+    padding:3px
+  }
+
+  #settingsBtn {
+    width:30px;
+    height:30px
+  }
+
+  #settingsBtn span {
+    width:14px
+  }
+
+  #time-container {
+    flex-wrap:wrap;
+    gap:6px;
+    padding:7px;
+    max-width:142px
+  }
+
+  #dayNumber {
+    font-size:6px
+  }
+
+  #day-period {
+    font-size:8px
+  }
+
+  #game-clock {
+    font-size:15px
+  }
+
+  #eventIndicator {
+    top:152px;
+    right:10px;
+    max-width:142px
+  }
+
+  #eventName {
+    font-size:8px
+  }
+
+  .event-icon {
+    font-size:16px
+  }
+
+  #expeditionNav {
+    left:10px;
+    right:10px;
+    bottom:max(10px,env(safe-area-inset-bottom));
+    transform:none;
+    padding:3px;
+    border-radius:10px;
+    justify-content:space-between
+  }
+
+  #expeditionNav button {
+    flex:1;
+    flex-direction:column;
+    gap:3px;
+    padding:7px 5px;
+    font-size:8px
+  }
+
+  #expeditionNav button>span {
+    font-size:18px;
+    line-height:1.2
+  }
+
+  #journeyLevel {
+    display:none
+  }
+
+  #travelHint {
+    display:none
+  }
+
+  #inventoryBtn {
+    bottom:85px;
+    right:14px;
+    width:49px;
+    height:49px
+  }
+
+  #actionBar {
+    bottom:168px;
+    left:auto;
+    right:10px;
+    transform:none;
+    max-width:calc(100vw - 155px);
+    width:210px;
+    padding:9px;
+    gap:7px
+  }
+
+  #actionBar.hidden,body.dialogue-open #actionBar {
+    transform:translateY(12px)
+  }
+
+  #actionContext {
+    font-size:9px
+  }
+
+  #actionButtons {
+    gap:6px
+  }
+
+  .action-btn {
+    padding:7px;
+    font-size:9px
+  }
+
+  #arrowControls {
+    bottom:82px;
+    left:12px
+  }
+
+  #arrowControls button {
+    width:40px;
+    height:40px
+  }
+
+  #dialogueBox {
+    bottom:150px;
+    width:calc(100vw - 20px);
+    max-width:none;
+    padding:13px;
+    gap:12px
+  }
+
+  #dialoguePortrait {
+    width:60px;
+    height:75px
+  }
+
+  #dialogueText {
+    font-size:12px
+  }
+
+  #dialogueName {
+    font-size:12px
+  }
+
+  #inventoryPanel {
+    width:calc(100vw - 20px);
+    max-height:calc(100dvh - 40px);
+    overflow:auto
+  }
+
+  .inventory-body {
+    flex-direction:column
+  }
+
+  .inventory-right {
+    width:100%;
+    min-height:0
+  }
+
+  .expedition-overlay {
+    padding:10px
+  }
+
+  .journal-shell,.minigame-shell {
+    max-height:calc(100dvh - 20px);
+    border-radius:11px
+  }
+
+  .journal-header {
+    padding:19px 18px 15px;
+    gap:10px
+  }
+
+  .journal-header h1 {
+    font-size:24px;
+    line-height:1.2;
+    max-width:265px
+  }
+
+  .journal-header .eyebrow {
+    font-size:7px
+  }
+
+  .close-button {
+    width:31px;
+    height:31px
+  }
+
+  .journal-tabs {
+    padding:0 10px;
+    gap:0;
+    justify-content:space-between
+  }
+
+  .journal-tabs button {
+    padding:12px 10px;
+    font-size:10px
+  }
+
+  #journalContent {
+    padding:19px 17px 23px
+  }
+
+  .journal-footer {
+    padding:13px 17px;
+    font-size:8px;
+    letter-spacing:.4px
+  }
+
+  .journal-footer>span:last-child {
+    display:none
+  }
+
+  .journal-intro h2 {
+    font-size:23px
+  }
+
+  .journal-intro p {
+    font-size:11px;
+    line-height:1.7
+  }
+
+  .day-stamp {
+    width:51px;
+    height:62px;
+    font-size:26px
+  }
+
+  .journal-intro .eyebrow {
+    font-size:8px
+  }
+
+  .daily-grid {
+    grid-template-columns:1fr;
+    gap:8px
+  }
+
+  .daily-goal {
+    padding:11px 13px
+  }
+
+  .daily-goal>div {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    flex:1
+  }
+
+  .daily-goal small {
+    margin:0
+  }
+
+  .daily-reward {
+    font-size:10px;
+    gap:10px
+  }
+
+  .daily-reward b {
+    display:block;
+    margin:4px 0 0
+  }
+
+  .daily-reward button {
+    font-size:10px;
+    padding:10px 13px
+  }
+
+  .section-line h2 {
+    font-size:21px
+  }
+
+  .section-line>span {
+    font-size:8px;
+    max-width:115px;
+    text-align:right
+  }
+
+  .passport-grid {
+    grid-template-columns:repeat(2,1fr);
+    gap:9px
+  }
+
+  .passport-card {
+    padding:13px 11px;
+    min-height:167px
+  }
+
+  .passport-card strong {
+    font-size:17px
+  }
+
+  .passport-card small {
+    font-size:5.5px
+  }
+
+  .fruit-collection {
+    grid-template-columns:repeat(4,1fr)
+  }
+
+  .friends-grid {
+    grid-template-columns:repeat(2,1fr);
+    gap:10px
+  }
+
+  .friend-art {
+    height:130px
+  }
+
+  .friend-art>span {
+    font-size:6px;
+    top:8px;
+    left:8px
+  }
+
+  .friend-info {
+    padding:12px
+  }
+
+  .friend-info h2 {
+    font-size:24px
+  }
+
+  .friend-info p {
+    font-size:10px;
+    line-height:1.7
+  }
+
+  .friend-info>small {
+    font-size:6px
+  }
+
+  .perk {
+    font-size:9px
+  }
+
+  .friend-info button {
+    font-size:8px;
+    padding:9px
+  }
+
+  .challenge-grid {
+    grid-template-columns:1fr;
+    gap:17px
+  }
+
+  .challenge-scene {
+    height:155px
+  }
+
+  .challenge-scene img {
+    right:18%
+  }
+
+  .challenge-info {
+    padding:18px
+  }
+
+  .challenge-info h2 {
+    font-size:26px
+  }
+
+  .challenge-info p {
+    font-size:12px;
+    margin-bottom:15px
+  }
+
+  .challenge-info button {
+    font-size:11px
+  }
+
+  .challenge-meta {
+    font-size:9px
+  }
+
+  .panel-lead {
+    font-size:11px;
+    margin-bottom:18px
+  }
+
+  .world-map {
+    border-width:3px
+  }
+
+  .map-pin {
+    width:26px;
+    height:26px;
+    font-size:9px
+  }
+
+  .map-legend {
+    gap:12px;
+    font-size:8px
+  }
+
+  .destinations>div {
+    gap:8px;
+    flex-wrap:wrap
+  }
+
+  .destinations>div>div {
+    min-width:calc(100% - 40px)
+  }
+
+  .destinations .small-button {
+    margin-left:37px
+  }
+
+  .destinations .small-button+.small-button {
+    margin-left:0
+  }
+
+  .camp-copy h2 {
+    font-size:27px
+  }
+
+  .camp-copy p {
+    font-size:11px
+  }
+
+  .camp-summary {
+    gap:18px
+  }
+
+  .camp-summary span {
+    font-size:9px
+  }
+
+  .camp-summary b {
+    font-size:24px
+  }
+
+  #unlockNotice {
+    top:12px;
+    width:330px;
+    padding:12px 15px
+  }
+
+  #unlockNotice strong {
+    font-size:21px
+  }
+
+  #unlockNotice small {
+    font-size:8px
+  }
+
+  #miniContent {
+    padding:3px 18px 23px
+  }
+
+  .mini-intro {
+    padding:0 3px
+  }
+
+  .mini-mentor {
+    width:140px;
+    height:140px;
+    margin:5px auto 18px
+  }
+
+  .mini-intro h2,.mini-result h2 {
+    font-size:26px
+  }
+
+  .mini-intro p {
+    font-size:11px
+  }
+
+  .mini-instructions {
+    font-size:10px
+  }
+
+  .mini-game-top {
+    font-size:8px
+  }
+
+  .fishing-pond {
+    height:160px
+  }
+
+  .mini-status {
+    font-size:10px
+  }
+
+  .recipe-sequence {
+    gap:6px;
+    min-height:70px
+  }
+
+  .recipe-step {
+    width:55px
+  }
+
+  .recipe-step>span {
+    font-size:24px
+  }
+
+  .recipe-step>small {
+    font-size:8px
+  }
+
+  #recipeTitle {
+    font-size:20px
+  }
+
+  .memory-grid {
+    gap:7px
+  }
+
+  .card-back small {
+    font-size:4px
+  }
+
+  .card-face small {
+    font-size:8px
+  }
+
+  .result-actions {
+    flex-direction:column
+  }
+
+  .result-rewards {
+    margin:15px 0
+  }
+
+  .settings-box,.tutorial-box {
+    max-width:calc(100vw - 30px);
+    padding:24px
+  }
+
+  #toast {
+    max-width:calc(100vw - 28px);
+    font-size:11px
+  }
+
+}
+
+@media(max-height:600px) and (min-width:601px) {
+  #questTracker {
+    display:none
+  }
+
+  #expeditionBrand {
+    top:10px
+  }
+
+  #statusHUD {
+    top:60px
+  }
+
+  #expeditionNav {
+    bottom:10px
+  }
+
+  #journeyLevel {
+    bottom:15px
+  }
+
+  #actionBar {
+    bottom:75px
+  }
+
+  .expedition-overlay {
+    padding:12px
+  }
+
+  .journal-shell,.minigame-shell {
+    max-height:calc(100dvh - 24px)
+  }
+
+  .journal-header {
+    padding:14px 23px
+  }
+
+  .journal-header h1 {
+    font-size:25px
+  }
+
+  #miniContent {
+    padding-bottom:20px
+  }
+
+  .mini-mentor {
+    width:100px;
+    height:100px
+  }
+
+  .mini-intro h2 {
+    font-size:24px
+  }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation:none!important;
+    transition:none!important
+  }
+
+}
+
+/* Keep map labels legible when the camera passes over the white cloud tiles. */
+#expeditionBrand {
+  background:#1e4438ed;
+  padding:9px 12px;
+  border:1px solid #d8deb43d;
+  border-radius:9px;
+  text-shadow:none;
+  top:17px;
+  left:24px
+}
+
+#journeyLevel {
+  background:#1e4438ed;
+  padding:11px 13px;
+  border:1px solid #d8deb43d;
+  border-radius:8px;
+  text-shadow:none;
+  width:188px
+}
+
+@media(max-width:860px) {
+  #expeditionBrand {
+    top:10px;
+    left:12px;
+    padding:7px 10px
+  }
+
+  #journeyLevel {
+    width:140px;
+    padding:9px;
+    font-size:8px
+  }
+
+}
+
+@media(max-width:600px) {
+  #expeditionBrand {
+    top:8px;
+    left:10px;
+    padding:5px 8px
+  }
+
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Ucup Menjelajah Nusantara</title>
+  <link rel="icon" href="img/tas.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="expedition.css" />
+  <link rel="stylesheet" href="adventure.css" />
+</head>
+<body class="time-day">
+  <canvas id="gameCanvas"></canvas>
+
+  <!-- Lapisan suasana: bintang, bulan, warna langit, vignette -->
+  <div id="stars"></div>
+  <div id="moon"></div>
+  <div id="atmosphere"></div>
+  <div id="vignette"></div>
+
+  <!-- HUD kiri atas: kartu pemain + status -->
+  <div id="statusHUD">
+    <div class="player-card">
+      <img id="hudAvatar" src="avatars/avatar1.png" alt="">
+      <div class="player-meta">
+        <div id="hudPlayerName">Ucup</div>
+        <div id="locationName">Perjalanan</div>
+      </div>
+    </div>
+
+    <div class="status">
+      <label><img src="img/meal.png" class="icon" alt="">Kenyang<span id="mealValue">50%</span></label>
+      <div class="bar"><div class="fill" id="mealBar"></div></div>
+    </div>
+    <div class="status">
+      <label><img src="img/sleep.png" class="icon1" alt="">Energi<span id="sleepValue">50%</span></label>
+      <div class="bar"><div class="fill" id="sleepBar"></div></div>
+    </div>
+    <div class="status">
+      <label><img src="img/hygiene.png" class="icon2" alt="">Kebersihan<span id="hygieneValue">50%</span></label>
+      <div class="bar"><div class="fill" id="hygieneBar"></div></div>
+    </div>
+    <div class="status">
+      <label><img src="img/happiness.png" class="icon3" alt="">Semangat<span id="happinessValue">50%</span></label>
+      <div class="bar"><div class="fill" id="happinessBar"></div></div>
+    </div>
+
+    <div class="money">◈ Koin <span id="moneyAmount">100</span></div>
+  </div>
+
+  <!-- HUD kanan atas: minimap, jam, dan tombol pengaturan -->
+  <div id="topRight">
+    <div class="tr-row">
+      <div id="minimapPanel" role="button" tabindex="0" aria-label="Buka peta dunia">
+        <canvas id="minimap" width="184" height="129"></canvas>
+        <div class="minimap-label">PETA</div>
+      </div>
+      <button id="settingsBtn" title="Pengaturan (Esc)" aria-label="Pengaturan">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="time-container">
+      <span id="dayNumber">HARI 01</span><div id="game-clock">07:00</div>
+      <div id="day-period">Fajar</div>
+    </div>
+    <div id="discoveredList"></div>
+  </div>
+
+  <!-- Indikator event -->
+  <div id="eventIndicator">
+    <span id="eventIcon" class="event-icon"></span>
+    <span class="event-text">
+      <span id="eventName"></span>
+      <span id="eventDesc"></span>
+    </span>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Action bar kontekstual -->
+  <div id="actionBar">
+    <div id="actionContext">Tidak ada apa-apa di dekatmu</div>
+    <div id="actionButtons"></div>
+  </div>
+
+  <!-- Kontrol arah untuk layar sentuh -->
+  <div id="arrowControls">
+    <div class="arrow-row"><button id="upKey">&uarr;</button></div>
+    <div class="arrow-row">
+      <button id="leftKey">&larr;</button>
+      <button id="downKey">&darr;</button>
+      <button id="rightKey">&rarr;</button>
+    </div>
+  </div>
+
+  <!-- Tas -->
+  <button id="inventoryBtn" title="Tas (B)"><img src="img/tas.png" alt="Tas"></button>
+  <div id="inventoryPanel">
+    <div class="inventory-header">
+      <h2>TAS</h2>
+      <span id="inventoryCount">0/16</span>
+      <button id="inventoryCloseBtn" aria-label="Tutup tas">&times;</button>
+    </div>
+    <div class="inventory-body">
+      <div class="inventory-left">
+        <div id="inventoryGrid"></div>
+      </div>
+      <div class="inventory-right">
+        <div id="itemDetail"><h3>Pilih item</h3></div>
+        <img id="itemImage" style="display: none;" alt="">
+        <p id="itemDesc">Detail item akan muncul di sini.</p>
+        <div id="itemEffect"></div>
+        <button id="useItemBtn" style="display: none;">GUNAKAN</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="trashConfirm" style="display: none;">
+    <div class="trash-content">
+      <div class="trash-msg">Buang item ini?</div>
+      <div class="trash-btns">
+        <button id="trashYesBtn">Ya</button>
+        <button id="trashNoBtn">Tidak</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dialog NPC -->
+  <div id="dialogueBox">
+    <img id="dialoguePortrait" alt="">
+    <div class="dialogue-main">
+      <div class="dialogue-top">
+        <span id="dialogueName"></span>
+        <button id="dialogueCloseBtn" aria-label="Tutup percakapan">&times;</button>
+      </div>
+      <p id="dialogueText"></p>
+      <button id="dialogueNextBtn">LANJUT</button>
+    </div>
+  </div>
+
+  <!-- Menu pengaturan / jeda -->
+  <div id="settingsPanel">
+    <div class="settings-box">
+      <h2>JEDA</h2>
+      <button id="resumeBtn" class="set-primary">LANJUTKAN</button>
+      <button id="settingsRestartBtn" class="set-ghost">KEMBALI KE RUMAH</button>
+      <button id="settingsCharBtn" class="set-ghost">TEMAN PERJALANAN</button>
+      <button id="settingsTutorBtn" class="set-ghost">LIHAT TUTORIAL</button>
+      <button id="musicToggle" class="set-ghost">MUSIK: NYALA</button>
+      <p class="settings-hint">Esc untuk menutup &middot; WASD jalan &middot; E interaksi &middot; B tas</p>
+    </div>
+  </div>
+
+  <!-- Tutorial singkat (bisa dilewati) -->
+  <div id="tutorialOverlay">
+    <div class="tutorial-box">
+      <div class="tutorial-head">
+        <span id="tutorialStep">1/6</span>
+        <button id="tutorialSkip">LEWATI</button>
+      </div>
+      <h2 id="tutorialTitle"></h2>
+      <p id="tutorialText"></p>
+      <div id="tutorialDots"></div>
+      <button id="tutorialNext" class="set-primary">LANJUT</button>
+    </div>
+  </div>
+
+  <!-- Game Over -->
+  <div id="gameOverOverlay">
+    <div class="gameover-box">
+      <h1>WAKTUNYA PULIH</h1>
+      <p id="gameOverReason"></p>
+      <div class="gameover-btns">
+        <button id="restartBtn" class="go-primary">PULIH DI RUMAH</button>
+        <button id="changeCharBtn" class="go-ghost">TEMAN PERJALANAN</button>
+      </div>
+    </div>
+  </div>
+  <audio id="gameover-sound" src="audio/gameover.wav"></audio>
+
+  <!-- Urutan penting: data -> state -> status -> game utama -> sistem dunia -->
+  <script src="data/collisions.js"></script>
+  <script src="data/audio.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/adventure-data.js"></script>
+  <script src="js/progression-core.js"></script>
+  <script src="js/characters.js"></script>
+  <script src="js/pause.js"></script>
+  <script src="js/gamestate.js"></script>
+  <script src="js/spritesheet.js"></script>
+  <script src="js/status.js"></script>
+  <script src="index.js"></script>
+  <script src="js/dialogue.js"></script>
+  <script src="js/inventory.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/npc.js"></script>
+  <script src="js/actionbar.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/minimap.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/mobile.js"></script>
+  <script src="js/time.js"></script>
+  <script src="js/adventure.js"></script>
+  <script src="js/expedition.js"></script>
+  <script src="js/minigames.js"></script>
+  <script src="js/rhythm.js"></script>
+  <script src="js/tutorial.js"></script>
+</body>
+</html>

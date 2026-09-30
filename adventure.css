@@ -1,0 +1,129 @@
+/* Chapters, field discoveries and a playable bamboo instrument. */
+.chapter-card { overflow:hidden; border:1px solid var(--line); border-radius:15px; background:#fffdf6; margin-bottom:30px }
+.chapter-cover { position:relative; min-height:205px; padding:28px 32px; color:#fff7dc; background:linear-gradient(90deg,#163d32f5 12%,#163d32df 50%,#163d3230),url('assets/world/journey.png') center 52%/cover }
+.chapter-cover .eyebrow { color:#eacc83 }
+.chapter-cover h2,.chapter-finale h2 { margin:12px 0; font:36px/1.15 Georgia,serif }
+.chapter-cover p { max-width:440px; font-size:13px; line-height:1.7; color:#e0e6cf; margin:0 0 16px }
+.chapter-count { display:inline-block; font-size:9px; letter-spacing:2px; border:1px solid #eadba85c; padding:6px 9px; border-radius:5px }
+.chapter-objectives { padding:8px 24px }
+.objective { display:flex; width:100%; align-items:center; gap:13px; padding:17px 0; text-align:left; border:0; border-bottom:1px solid var(--line); background:none; color:var(--forest); cursor:pointer; font-size:13px }
+.objective:last-child { border-bottom:0 }
+.objective>span:nth-child(2) { flex:1; line-height:1.4 }
+.objective small { display:block; margin-top:5px; color:#76816c; font-size:10px }
+.objective b { font-size:11px; font-variant-numeric:tabular-nums }
+.objective-check { display:grid; place-items:center; flex:0 0 27px; height:27px; border:1px solid #55755740; border-radius:50%; font-size:14px }
+.objective.done { cursor:default; opacity:.68 }
+.objective.done .objective-check { background:#d6e3ca; border-color:#d6e3ca }
+.objective:not(:disabled):hover>span:nth-child(2) { text-decoration:underline; text-underline-offset:4px }
+.chapter-reward { padding:16px 24px; background:#e9eedf; display:flex; align-items:center; justify-content:space-between; gap:15px }
+.chapter-reward>span { font-size:10px; color:#707b61 }
+.chapter-reward b { display:block; margin-top:5px; color:var(--forest); font-size:12px }
+.chapter-reward .primary-button { margin:0; font-size:11px; padding:12px 17px }
+.chapter-reward .primary-button:disabled { opacity:.45 }
+.chapter-finale { position:relative; padding:36px; background:#dfe9ce }
+.chapter-finale p { max-width:510px; line-height:1.8; font-size:13px }
+.chapter-seal { position:absolute; right:30px; top:32px; color:#b99442; font-size:54px }
+.outing-card { display:flex; align-items:center; gap:16px; padding:22px; margin:28px 0; background:#e5eadb; border-radius:12px; border:1px solid var(--line) }
+.outing-icon { flex:0 0 44px; font-size:44px; color:#b5984e }
+.outing-card>div { flex:1 }
+.outing-card strong { display:block; margin:5px 0; font:21px Georgia,serif }
+.outing-card p { font-size:11px; line-height:1.7; margin:5px 0; color:#617259 }
+.outing-card small { font-size:10px; color:#55694c }
+.outing-card button { padding:10px 13px; margin:0; font-size:11px }
+.relic-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:20px 0 8px }
+.relic-card { display:flex; flex-direction:column; align-items:center; text-align:center; padding:16px 9px; border:1px dashed #82966d73; border-radius:12px; background:#edeee0; color:var(--forest); cursor:pointer; transition:transform .15s,background .15s }
+.relic-card:hover { transform:translateY(-3px); background:#e2e9d4 }
+.relic-art { display:block; width:78px; height:78px; object-fit:contain; image-rendering:pixelated; margin-bottom:12px }
+.relic-card:not(.found) .relic-art { filter:grayscale(.6); opacity:.65 }
+.relic-card.found { border-style:solid; background:#fff9e8; border-color:#dbc899 }
+.relic-card small { font-size:9px; color:#78816a; margin-bottom:7px }
+.relic-card strong { font-size:12px; line-height:1.45 }
+.relic-card>span:last-child { font-size:9px; margin-top:10px; color:#64845d }
+.unlock-progress { margin:12px 0 }
+.unlock-progress>span { display:block; height:4px; border-radius:8px; background:#264e2b18; overflow:hidden }
+.unlock-progress i { display:block; height:100%; background:#aaac72; border-radius:8px }
+.unlock-progress small { display:block; line-height:1.6; font-size:9px; margin-top:7px; color:#78806a }
+.camp-scene.camp-illustrated { background:linear-gradient(#122e5330,#182c4690),url('assets/world/journey.png') center 52%/cover; height:180px; border-radius:12px }
+.camp-illustrated>b,.camp-illustrated>i { display:none }
+.camp-illustrated>span { left:auto; right:8%; top:13%; color:#fff5be; font-size:64px; text-shadow:0 0 20px #f6ddaf }
+.day-review { text-align:left; max-width:530px; margin:26px auto 0; border-top:1px solid var(--line); padding-top:20px }
+.day-review>div { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:12px }
+.day-review>div>span { font-size:10px; color:#78826c }
+.day-review b { display:block; font:25px Georgia,serif; color:var(--forest); margin-bottom:6px }
+.day-review p { font-size:11px; color:#806839; background:#efe6c8; padding:12px; border-radius:8px }
+.yesterday-note { margin-top:28px; border-top:1px solid var(--line); padding-top:18px; font-size:12px; color:#65785a }
+.yesterday-note summary { cursor:pointer; font-weight:600 }
+.yesterday-note p { font-size:11px; line-height:1.8 }
+#regionArrival { position:fixed; pointer-events:none; z-index:24; left:50%; top:100px; transform:translateX(-50%); text-align:center; color:#fff8df; padding:16px 32px; min-width:220px; border-top:1px solid #e6d99a70; border-bottom:1px solid #e6d99a70; border-radius:8px; background:linear-gradient(90deg,#173d3300,#173d33d9 18%,#173d33d9 82%,#173d3300); text-shadow:0 2px 4px #163429; animation:arrival-in .6s ease both }
+#regionArrival>span { font-size:8px; letter-spacing:3px; color:#e5d9a6 }
+#regionArrival strong { display:block; font:30px Georgia,serif; margin:7px 0 }
+#regionArrival small { font-size:10px; letter-spacing:.7px }
+@keyframes arrival-in { from { opacity:0; translate:0 8px } to { opacity:1; translate:0 0 } }
+.challenge-grid { grid-template-columns:repeat(2,minmax(0,1fr)) }
+.challenge-card.rhythm .challenge-scene { background:linear-gradient(135deg,#204f47,#60866b) }
+.rhythm .challenge-scene>span { color:#e6dba0 }
+.bamboo-garden { position:relative; height:140px; margin:18px 0 0; border-radius:12px; overflow:hidden; background:radial-gradient(ellipse at 80% 10%,#71866133,transparent 50%),linear-gradient(#1c4240,#527761); border:1px solid #739171 }
+.garden-moon { position:absolute; top:10px; right:12%; color:#eddea8; font:65px Georgia,serif; transform:rotate(-15deg) }
+.bamboo-garden>i { position:absolute; bottom:-10px; width:13px; height:140px; left:12%; border-radius:8px; transform:rotate(-8deg); background:repeating-linear-gradient(0deg,#8c9c6433 0 26px,#d1d5a04a 27px 30px) }
+.bamboo-garden>i:nth-of-type(2) { left:19%; height:170px; transform:rotate(9deg) }
+.bamboo-garden>i:nth-of-type(3) { left:87%; height:110px }
+.bamboo-sign { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff0b9 }
+.bamboo-sign small { font-size:8px; letter-spacing:2px; color:#d1d9b8 }
+.bamboo-sign strong { font:55px/1.2 Georgia,serif; margin-top:4px }
+.rhythm-track { position:relative; height:18px; border-radius:8px; background:#cfd8bd; margin-top:16px }
+.rhythm-track>span { position:absolute; left:60%; width:30%; height:100%; border-radius:4px; background:repeating-linear-gradient(90deg,#e2b85e 0 16px,#efd296 16px 18px); box-shadow:inset 0 0 0 1px #a7834560 }
+.rhythm-track>i { position:absolute; height:30px; top:-6px; width:4px; border-radius:3px; transform:translateX(-50%); background:#254c3a; box-shadow:0 0 0 2px #fff8e0 }
+.bamboo-keys { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:20px 0 16px; align-items:end }
+.bamboo-keys button { position:relative; display:flex; flex-direction:column; align-items:center; gap:6px; padding:12px 0; border:1px solid #9aa58060; border-radius:10px; background:#e4e8d5; color:#5a7251; cursor:pointer; transition:background .15s,transform .15s }
+.bamboo-keys button.expected { background:#f1df9e; color:#254b37; border-color:#b99942; box-shadow:0 0 0 3px #dfbc5325 }
+.bamboo-keys button:active:not(:disabled) { transform:translateY(3px) }
+.bamboo-keys button:disabled { opacity:.65 }
+.bamboo-tube { display:block; width:33px; height:62px; border-radius:8px 8px 3px 3px; border:2px solid #5e7c49; background:repeating-linear-gradient(0deg,transparent 0 19px,#6d874f 20px 22px),linear-gradient(90deg,#8ba962,#b9ca82 45%,#719350) }
+.bamboo-keys button:nth-child(2) .bamboo-tube { height:52px }
+.bamboo-keys button:nth-child(3) .bamboo-tube { height:43px }
+.bamboo-keys button:nth-child(4) .bamboo-tube { height:34px }
+.bamboo-keys strong { font-size:12px; letter-spacing:1px }
+.bamboo-keys kbd { font-size:9px }
+@media(max-width:700px) {
+  .chapter-cover { min-height:200px; padding:22px; background-position:60% center }
+  .chapter-cover h2 { font-size:29px }
+  .chapter-cover p { font-size:12px }
+  .chapter-objectives { padding:6px 16px }
+  .objective { gap:9px; font-size:12px; padding:15px 0 }
+  .objective small { font-size:9px }
+  .objective-check { flex-basis:23px; height:23px }
+  .chapter-reward { padding:15px 16px; flex-wrap:wrap }
+  .chapter-reward>span { flex:1 }
+  .chapter-reward .primary-button { padding:11px 12px; font-size:10px }
+  .relic-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px }
+  .outing-card { padding:18px; gap:12px; flex-wrap:wrap }
+  .outing-card>div { flex-basis:calc(100% - 58px) }
+  .outing-card strong { font-size:20px }
+  .outing-card .small-button { margin-left:56px }
+  .challenge-grid { grid-template-columns:1fr }
+  .camp-scene.camp-illustrated { height:130px }
+  .day-review>div { gap:7px }
+  #regionArrival { top:162px; min-width:180px; padding:10px 15px }
+  #regionArrival strong { font-size:24px }
+  #regionArrival small { font-size:8px }
+  .bamboo-garden { height:112px }
+  .bamboo-keys { gap:8px; margin:16px 0 12px }
+  .bamboo-keys button { padding:10px 0 }
+  .bamboo-sign strong { font-size:46px }
+  .chapter-finale { padding:24px }
+  .chapter-finale h2 { font-size:27px }
+  .chapter-seal { position:static; font-size:32px }
+}
+@media(max-height:700px) {
+  .bamboo-garden { height:85px }
+  .bamboo-sign strong { font-size:38px }
+  .bamboo-keys { margin:12px 0 8px }
+  .bamboo-tube { height:40px }
+  .bamboo-keys button:nth-child(2) .bamboo-tube { height:34px }
+  .bamboo-keys button:nth-child(3) .bamboo-tube { height:28px }
+  .bamboo-keys button:nth-child(4) .bamboo-tube { height:22px }
+}
+@media(prefers-reduced-motion:reduce) {
+  #regionArrival { animation:none }
+  .relic-card,.bamboo-keys button { transition:none }
+}
